@@ -1,14 +1,14 @@
 $(document).ready(function() {
 	var direction = 2;
 	$(document).keydown(function(e) {
-		if((direction===2) || (direction===4)){
+		if(((direction===2) || (direction===4)) && ((snake[0][2]===2) || (snake[0][2]===4))) {
 			if(e.keyCode == 38) {
 				direction=1;
 			}
 			else if(e.keyCode==40){
 				direction=3;
 			}
-		} else {
+		} else if(((direction===1) || (direction===3)) && ((snake[0][2]===1) || (snake[0][2]===3))) {
 			if(e.keyCode == 37) {
 				direction=4;
 			}
@@ -58,7 +58,8 @@ $(document).ready(function() {
 				i++;
 			}
 			if(collide===true) {
-
+				clearInterval(speed);
+				$("#gameOver").fadeIn(200);
 			}
 			else if((x+(snake_width/2)===chipx) && (y+(snake_width/2)===chipy))
 			{
